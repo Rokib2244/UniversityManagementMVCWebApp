@@ -1,0 +1,80 @@
+﻿@using UniversityManagementMVCWebApp.Models
+@model UniversityManagementMVCWebApp.Models.Course
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Save";
+    List<Department> departments = ViewBag.Departments;
+    List<Semester> semesters = ViewBag.Semester;
+    string message = ViewBag.Message;
+}
+
+<h3 style="margin-left: 23%;">Save Course</h3>
+<br/>
+
+<div class="container">
+        <form class="form-horizontal" method="POST">
+            <div class="form-group">
+                <label for="codeTextBox" class="col-sm-2 control-label">Code</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="codeTextBox" placeholder="Code" name="Code">
+                    @Html.ValidationMessageFor(l => l.Code)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nameTextBox" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nameTextBox" placeholder="Name" name="Name">
+                    @Html.ValidationMessageFor(l => l.Name)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="creditTextBox" class="col-sm-2 control-label">Credit</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="creditTextBox" placeholder="Credit" name="Credit">
+                    @Html.ValidationMessageFor(l => l.Credit)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descriptionTextBox" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" id="descriptionTextBox" name="Description" placeholder="Description"></textarea>
+                    @Html.ValidationMessageFor(l => l.Description)
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="departmentDropDownList" class="col-sm-2 control-label">Department</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="departmentDropDownList" name="DepartmentId">
+                        <option value="">--Select Department--</option>
+                        @foreach (var item in departments)
+                        {
+                            <option value="@item.ID">@item.Code</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(l => l.DepartmentId)
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="SemesterDropDownList" class="col-sm-2 control-label">Semester</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="SemesterDropDownList" name="SemesterId">
+                        <option value="">--Select Semester--</option>
+                        @foreach (var item in semesters)
+                        {
+                            <option value="@item.Id">@item.SemesterNo</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(l => l.SemesterId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-info">Save</button>
+                </div>
+            </div>
+        </form>
+        @message
+    </div>
+

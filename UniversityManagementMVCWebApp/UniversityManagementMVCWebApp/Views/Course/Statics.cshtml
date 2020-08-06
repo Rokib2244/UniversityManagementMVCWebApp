@@ -1,0 +1,45 @@
+﻿@using UniversityManagementMVCWebApp.Models
+
+@{
+    ViewBag.Title = "Statics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Department> departments = ViewBag.Departments;
+}
+@section styles
+{
+    <style>
+        table thead tr th {
+            text-align: center;
+        }
+    </style>
+}
+<h2 style="margin-left: 16%; margin-bottom: 20px;">Course Statics</h2>
+<div class="form-group">
+    <label for="departmentDropDownList" class="col-sm-2 control-label" style="margin-right: -27px; margin-top: 5px;">Department</label>
+    <div class="col-sm-10">
+        <select class="form-control" id="departmentDropDownList" name="ID">
+            @foreach (Department department in departments)
+            {
+                <option value="@department.ID">@department.Code</option>
+            }
+        </select>
+    </div>
+</div>
+<div style ="margin-top: 20px; text-align: center;">
+<table class="table table-bordered" id="staticsTable">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name/Title</th>
+            <th>Semester</th>
+            <th>Assigned To</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+    </table>
+</div>
+@section scripts{
+    
+<script src="~/Scripts/CourseStatics.js"></script>
+}
+
